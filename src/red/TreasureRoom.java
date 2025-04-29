@@ -33,7 +33,7 @@ public class TreasureRoom implements TreasureRoomDoor {
 
   // interact methods
 
-  public Gem retrieveValuable() {
+  public synchronized Gem retrieveValuable() {
     Gem v = null;
     if (gems.size() > 0) {
       v = gems.remove(0);
@@ -41,12 +41,12 @@ public class TreasureRoom implements TreasureRoomDoor {
     return v;
   }
 
-  public void addValuable(Gem v) {
+  public synchronized void addValuable(Gem v) {
     gems.add(v);
   }
 
   @Override
-  public List<Gem> lookAtAllGems() {
+  public synchronized List<Gem> lookAtAllGems() {
     return new ArrayList<Gem>(gems);
   }
 }

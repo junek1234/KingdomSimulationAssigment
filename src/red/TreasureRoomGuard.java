@@ -63,18 +63,18 @@ public class TreasureRoomGuard implements TreasureRoomDoor
     notifyAll();
   }
 
-  @Override public Gem retrieveValuable()
+  @Override public synchronized Gem retrieveValuable()
   {
     return treasureRoom.retrieveValuable();
   }
 
-  @Override public void addValuable(Gem v)
+  @Override public synchronized void addValuable(Gem v)
   {
     treasureRoom.addValuable(v);
   }
 
   @Override public synchronized List<Gem> lookAtAllGems()
   {
-    return lookAtAllGems();
+    return treasureRoom.lookAtAllGems();
   }
 }
