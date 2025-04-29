@@ -46,7 +46,7 @@ public class Accountant implements Runnable
       {
         throw new RuntimeException(e);
       }
-      Catalogue.getInstance().add("Total worth of gems in the Treasure Room: "+totalWorthOfGems+" Counted by "+name);
+      Catalogue.getInstance().add("\u001B[34m"+"Total worth of gems in the Treasure Room: "+totalWorthOfGems+" Counted by "+name+"\u001B[0m");
       treasureRoom.releaseReadAccess(name);
       totalWorthOfGems=0;
     }

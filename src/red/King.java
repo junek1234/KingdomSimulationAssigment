@@ -86,7 +86,7 @@ public class King implements Runnable
   public void holdAParty()
   {
     gems.clear();
-    Catalogue.getInstance().add("The King is holding a party of a value: "+totalValue);
+    Catalogue.getInstance().add("\u001B[31m"+"The King is holding a party of a value: "+totalValue+"\u001B[0m");
     totalValue=0;
     try
     {
@@ -101,7 +101,7 @@ public class King implements Runnable
   public void cancelParty()
   {
     gems.clear();
-    Catalogue.getInstance().add("The King cancelled the party");
+    Catalogue.getInstance().add("\u001B[31m"+"The King cancelled the party, value: "+totalValue+"/"+costOfTheParty+"\u001B[0m");
     totalValue=0;
   }
 }
