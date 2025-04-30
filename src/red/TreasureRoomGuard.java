@@ -1,5 +1,6 @@
 package red;
 
+import green.Catalogue;
 import orange.Gem;
 
 import java.util.List;
@@ -14,6 +15,7 @@ public class TreasureRoomGuard implements TreasureRoomDoor
   }
   @Override public synchronized void acquireReadAccess(String actorName)
   {
+    Catalogue.getInstance().add("\u001B[33m"+actorName+" is waiting to enter the Treasure Room"+"\u001B[0m");
     while(writers>0||waitingWriters>0)
     {
       try
@@ -31,6 +33,7 @@ public class TreasureRoomGuard implements TreasureRoomDoor
 
   @Override public synchronized void acquireWriteAccess(String actorName)
   {
+    Catalogue.getInstance().add("\u001B[33m"+actorName+" is waiting to enter the Treasure Room"+"\u001B[0m");
     waitingWriters++;
     while(readers>0||writers>0)
     {

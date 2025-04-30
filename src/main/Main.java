@@ -14,15 +14,14 @@ public class Main
   public static void main(String[] args)
   {
     GemDeposit gemDeposit = new GemDeposit();
-    GemMine gemMine = new GemMine();
     TreasureRoom treasureRoom = new TreasureRoom();
     TreasureRoomGuard treasureRoomGuard = new TreasureRoomGuard(treasureRoom);
 
-    GemMineWorker worker1 = new GemMineWorker(gemMine, gemDeposit, "Worker1");
-    GemMineWorker worker2 = new GemMineWorker(gemMine, gemDeposit,"Worker2");
-    GemMineWorker worker3 = new GemMineWorker(gemMine, gemDeposit, "Worker3");
-    GemMineWorker worker4 = new GemMineWorker(gemMine, gemDeposit, "Worker4");
-    GemMineWorker worker5 = new GemMineWorker(gemMine, gemDeposit, "Worker5");
+    GemMineWorker worker1 = new GemMineWorker(gemDeposit, "Worker1");
+    GemMineWorker worker2 = new GemMineWorker(gemDeposit,"Worker2");
+    GemMineWorker worker3 = new GemMineWorker(gemDeposit, "Worker3");
+    GemMineWorker worker4 = new GemMineWorker(gemDeposit, "Worker4");
+    GemMineWorker worker5 = new GemMineWorker(gemDeposit, "Worker5");
     worker1.changeMineStrategy("MineFast");
     worker2.changeMineStrategy("MineSlow");
     worker3.changeMineStrategy("MineCows");

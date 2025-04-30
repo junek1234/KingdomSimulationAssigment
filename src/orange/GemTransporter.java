@@ -15,7 +15,6 @@ public class GemTransporter implements Runnable
   private Random rand = new Random();
   private int targetNumber;
   private int totalGemValue;
-  private Catalogue catalogue;
   private String name;
   private TreasureRoomDoor treasureRoom;
   private List<Gem> gems;
@@ -23,7 +22,6 @@ public class GemTransporter implements Runnable
   public GemTransporter(GemDeposit gemDeposit, String name, TreasureRoomGuard treasureRoom)
   {
     this.gemDeposit=gemDeposit;
-    catalogue = Catalogue.getInstance();
     this.name=name;
     this.treasureRoom=treasureRoom;
     gems = new ArrayList<>();
@@ -41,7 +39,7 @@ public class GemTransporter implements Runnable
         Gem gem = gemDeposit.take();
         gems.add(gem);
         totalGemValue += gem.getValue();
-        catalogue.add(gem.getName()+" was added to the transporter "+name+" Total transporter value: "+totalGemValue);
+        Catalogue.getInstance().add(gem.getName()+" was added to the transporter "+name+" Total transporter value: "+totalGemValue);
       }
       try
       {
@@ -57,6 +55,7 @@ public class GemTransporter implements Runnable
         treasureRoom.addValuable(gems.getFirst());
         gems.removeFirst();
       }
+      Catalogue.getInstance().add("\u001B[32m"+"Transporter: "+name+" added: "+totalGemValue+" value to the Treasure Room"+"\u001B[0m");
       totalGemValue = 0;
       treasureRoom.releaseWriteAccess(name);
     }

@@ -4,17 +4,13 @@ import green.Catalogue;
 
 public class GemMineWorker implements Runnable
 {
-  private GemMine gemMine;
   private GemDepositInterface gemDeposit;
   private MineStrategy mineStrategy;
-  private Catalogue catalogue;
   private String name;
-  public GemMineWorker(GemMine gemMine, GemDepositInterface gemDeposit, String name)
+  public GemMineWorker(GemDepositInterface gemDeposit, String name)
   {
-    this.gemMine=gemMine;
     this.gemDeposit=gemDeposit;
     mineStrategy=new MineFast();
-    catalogue=Catalogue.getInstance();
     this.name=name;
   }
   @Override public void run()
@@ -23,7 +19,7 @@ public class GemMineWorker implements Runnable
     while(true)
     {
        gem = mineStrategy.mine();
-       catalogue.add(gem.getName()+" was mined by worker "+name);
+       Catalogue.getInstance().add(gem.getName()+" was mined by worker "+name);
        gemDeposit.put(gem);
     }
   }
