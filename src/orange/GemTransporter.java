@@ -10,7 +10,7 @@ import java.util.Random;
 
 public class GemTransporter implements Runnable
 {
-  private GemDeposit gemDeposit;
+  private GemDepositInterface gemDeposit;
 
   private Random rand = new Random();
   private int targetNumber;
@@ -19,7 +19,7 @@ public class GemTransporter implements Runnable
   private TreasureRoomDoor treasureRoom;
   private List<Gem> gems;
 
-  public GemTransporter(GemDeposit gemDeposit, String name, TreasureRoomGuard treasureRoom)
+  public GemTransporter(GemDepositInterface gemDeposit, String name, TreasureRoomGuard treasureRoom)
   {
     this.gemDeposit=gemDeposit;
     this.name=name;

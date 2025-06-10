@@ -12,10 +12,13 @@ public class GemMine {
     {
       instance = createGem(key);
     }
+    if (instance != null) {
+      allInstances.put(key, instance);
+    }
     return instance;
   }
 
-  private static Gem createGem(String key) {
+  public static Gem createGem(String key) {
     switch (key) {
       case "Diamond" ->
       {

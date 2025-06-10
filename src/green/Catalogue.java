@@ -17,14 +17,9 @@ public class Catalogue
   private static Catalogue instance = new Catalogue(); // Singleton instance
   private static final Lock lock = new ReentrantLock();
 
-  private Queue<LogLine> logQueue;
-  private File logFile;
   private DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd  hh:mm:ss");
 
-  private Catalogue()
-  {
-    logQueue = new LinkedList<>();
-  }
+
 
   public static Catalogue getInstance()
   {
@@ -43,20 +38,14 @@ public class Catalogue
 
   public synchronized void add(String log)
   {
-    if (log == null || log.equals("")) //Don't log empty lines
+    if (log == null || log.equals(""))
     {
       return;
     }
-    // add to the queue
     LogLine logLine = new LogLine(log, dateFormat.format(Calendar.getInstance().getTime()));
-    logQueue.add(logLine);
     System.out.println(logLine); // add to the console
   }
 
-  public Queue<LogLine> getAll()
-  {
-    return logQueue;
-  }
 
 
 }

@@ -2,7 +2,7 @@ package orange;
 
 public class GemDeposit implements GemDepositInterface
 {
-
+  private final int maximumSize=100;
   private ListADT<Gem> queue;
   public GemDeposit()
   {
@@ -10,6 +10,17 @@ public class GemDeposit implements GemDepositInterface
   }
   @Override public synchronized void put(Gem element)
   {
+    while(queue.size()>=100)
+    {
+      try
+      {
+        wait();
+      }
+      catch (InterruptedException e)
+      {
+        throw new RuntimeException(e);
+      }
+    }
     queue.add(element);
     notifyAll();
   }
@@ -29,6 +40,7 @@ public class GemDeposit implements GemDepositInterface
     }
     Gem gem = queue.get(0);
     queue.remove(0);
+    notifyAll();
     return gem;
   }
 
