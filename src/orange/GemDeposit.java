@@ -10,7 +10,7 @@ public class GemDeposit implements GemDepositInterface
   }
   @Override public synchronized void put(Gem element)
   {
-    while(queue.size()>=100)
+    while(size()>=100)
     {
       try
       {
